@@ -11,13 +11,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var textLabel: UILabel!
     
-    private var result = 0.0;
-    private var temp = "";
-    private var lastOperator = "";
+    private var result = 0.0
+    private var firstNumber = ""
+    private var temp = ""
+    private var lastOperator = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textLabel.text = temp;
+        textLabel.text = ""
     }
     
     @IBAction func btnPressed(_ sender: Any) {
@@ -26,20 +27,20 @@ class ViewController: UIViewController {
             case 1: 
                 print("AC")
                 textLabel.text = ""
-                result = 0;
-                temp = "";
-            case 2: 
+                result = 0
+                temp = ""
+            case 2:
                 print("+/-");
                 // Idk what to do here?
             case 3:
-                print("%");
-                result = Double(Int(result) % (Int(temp) ?? 1));
-                temp = "";
+                print("%")
+                result = Double(Int(result) % (Int(temp) ?? 1))
+                temp = ""
             case 4:
                 print("/")
-                result /= (temp as NSString).doubleValue;
-                temp = "";
-                lastOperator = "/";
+                result /= (temp as NSString).doubleValue
+                temp = ""
+                lastOperator = "/"
             case 5: 
                 print("7")
                 temp = temp + "7"
@@ -54,10 +55,10 @@ class ViewController: UIViewController {
                 textLabel.text = temp
             case 8: 
                 print("x")
-                result *= (temp as NSString).doubleValue;
+                result *= (temp as NSString).doubleValue
                 print("result: " + String(result))
-                temp = "";
-                lastOperator = "x";
+                temp = ""
+                lastOperator = "x"
             case 9: 
                 print("4")
                 temp = temp + "4"
@@ -75,7 +76,7 @@ class ViewController: UIViewController {
                 result -= (temp as NSString).doubleValue;
                 print("result: " + String(result))
                 temp = "";
-                lastOperator = "-";
+                lastOperator = "-"
             case 13: 
                 print("1")
                 temp = temp + "1"
@@ -90,7 +91,7 @@ class ViewController: UIViewController {
                 textLabel.text = temp
             case 16: 
                 print("+")
-                result += (temp as NSString).doubleValue;
+                result += (temp as NSString).doubleValue
                 print("result: " + String(result))
                 temp = "";
                 lastOperator = "+";
@@ -106,22 +107,23 @@ class ViewController: UIViewController {
                 print("=")
                 if (Float(temp) != nil){
                     switch lastOperator {
-                    case "+": result += Double(temp) ?? 0.0;
-                    case "-": result -= Double(temp) ?? 0.0;
-                    case "*": result *= Double(temp) ?? 0.0;
-                    case "/": result /= Double(temp) ?? 1.0;
-                    case "%": result = Double(Int(result) % (Int(temp) ?? 1));
-                    default: break;
+                    case "+": result += Double(temp) ?? 0.0
+                    case "-": result -= Double(temp) ?? 0.0
+                    case "*": result *= Double(temp) ?? 0.0
+                    case "/": result /= Double(temp) ?? 1.0
+                    case "%": result = Double(Int(result) % (Int(temp) ?? 1))
+                    default: break
                     }
                     if floor(result) == result {
-                        textLabel.text = String(Int(result));
+                        textLabel.text = String(Int(result))
                     }
                     else {
-                        textLabel.text = String(result);
+                        textLabel.text = String(result)
                     }
                 }
-                result = 0;
-                temp = "";
+                result = 0
+                temp = ""
+                print(result)
             default: print("error")
             }
         }
